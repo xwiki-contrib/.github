@@ -46,4 +46,4 @@ jobs:
         with:
           node-version: 24
       - name: Validate the presets
-        run: npx --yes --package renovate@44 -- renovate-config-validator --strict renovate/*.json5
+        run: npx --yes --package renovate@44 -- renovate-config-validator --strict --no-global renovate/*.json5

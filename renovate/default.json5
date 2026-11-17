@@ -42,7 +42,7 @@
 
     // There is always a more recent version of contrib parent and we don't want to upgrade just for that
     {
-      "matchPackagePrefixes": ["org.xwiki.contrib:parent-"],
+      "matchPackageNames": ["org.xwiki.contrib:parent-*"],
       "enabled": false
     }
   ]
