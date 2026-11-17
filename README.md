@@ -22,14 +22,6 @@ Nothing has to be done in a repository to pick these up: deleting its own copy i
 
 ## Renovate preset
 
-[`renovate/default.json5`](renovate/default.json5) is a [Renovate config preset](https://docs.renovatebot.com/config-presets/) holding the settings every contrib repository wants. It extends the [preset of the `xwiki` organization](https://github.com/xwiki/.github/blob/master/renovate/default.json5) and adds what is specific to contrib: the XWiki Nexus repository and the exclusion of the contrib parent POM. A repository's `.github/renovate.json5` only needs:
-
-```json5
-{
-  "extends": ["github>xwiki-contrib/.github//renovate/default.json5"]
-}
-```
-
-plus whatever is specific to it. Mind how Renovate merges the two: `packageRules` are concatenated, the preset's coming first, but every other array is replaced wholesale by the repository's value. A repository that needs an extra `ignoreDeps` entry has to repeat the presets' entries alongside its own.
+[`renovate/default.json5`](renovate/default.json5) is a [Renovate config preset](https://docs.renovatebot.com/config-presets/) holding the settings every contrib repository wants. It extends the [preset of the `xwiki` organization](https://github.com/xwiki/.github/blob/master/renovate/default.json5) and adds what is specific to contrib: the XWiki Nexus repository and the exclusion of the contrib parent POM. Every contrib repository uses it without any file of its own, through the inherited config of [xwiki-contrib/renovate-config](https://github.com/xwiki-contrib/renovate-config), which also disables the "Configure Renovate" onboarding pull requests. A repository that needs something specific adds a `.github/renovate.json5` with only that: it is applied on top of the preset. Mind how Renovate merges the two: `packageRules` are concatenated, the preset's coming first, but every other array is replaced wholesale by the repository's value. A repository that needs an extra `ignoreDeps` entry has to repeat the presets' entries alongside its own.
 
 Unlike the `xwiki` organization, the preset assigns the Renovate pull requests to nobody: each contrib project has its own maintainers.
